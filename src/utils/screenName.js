@@ -12,6 +12,7 @@ const cuenta = {
 const juego = {
   tab: "BrainBreaker",
   juego: "Brain Breaker",
+  español: "Español",
 };
 
 export const screen = {

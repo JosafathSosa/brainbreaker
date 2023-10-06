@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 //Pantallas
 import { Menu } from "../screens/Juego/Menu/Menu";
 import { AccountScreen } from "../screens/Cuenta/AccountScreen/AccountScreen";
+import { Nivel1 } from "../screens/Juego/Español/Nivel1/Nivel1";
 //
 
 import { screen } from "../utils/screenName";
@@ -33,6 +34,7 @@ export function StackJuego() {
           headerTintColor: "white",
         }}
       />
+      <Stack.Screen name={screen.juego.español} component={Nivel1} />
     </Stack.Navigator>
   );
 }

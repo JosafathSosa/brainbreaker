@@ -12,7 +12,9 @@ import { styles } from "./AccountScreen.styles";
 
 export function AccountScreen() {
   const { uid, photoURL, displayName, email } = getAuth().currentUser;
+
   const [avatar, setAvatar] = useState(photoURL);
+  const [image, setImage] = useState(photoURL);
 
   const changeAvatar = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -23,8 +25,8 @@ export function AccountScreen() {
     });
 
     if (!result.canceled) {
-      console.log(result);
-      uploadImage(result);
+      //console.log(result);
+      uploadImage(result.assets[0].uri);
     }
   };
 
@@ -36,8 +38,8 @@ export function AccountScreen() {
     const storageRef = ref(storage, `avatar/${uid}`);
 
     uploadBytes(storageRef, blob).then((snapshot) => {
-      console.log(snapshot.metadata.fullPath);
       uploadPhotoUrl(snapshot.metadata.fullPath);
+      //console.log(snapshot.metadata.fullPath);
     });
   };
 

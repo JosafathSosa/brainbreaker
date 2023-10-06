@@ -71,6 +71,7 @@ export function Menu() {
           title="Español"
           containerStyle={styles.btnContainer1}
           buttonStyle={styles.btn}
+          onPress={() => navigation.navigate(screen.juego.español)}
         />
       </View>
     </View>
