@@ -12,6 +12,7 @@ const Tab = createMaterialBottomTabNavigator();
 export function AppNavigationLogged() {
   return (
     <Tab.Navigator
+      barStyle={{ height: 90 }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => screenOptions(route, color, size),
       })}

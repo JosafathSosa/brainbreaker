@@ -13,6 +13,7 @@ const juego = {
   tab: "BrainBreaker",
   juego: "Brain Breaker",
   español: "Español",
+  nivel2: "Nivel2",
 };
 
 export const screen = {
