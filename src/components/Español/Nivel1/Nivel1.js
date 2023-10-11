@@ -21,27 +21,24 @@ export function Nivel1(props) {
   ]);
 
   const [loop, setLoop] = useState(true);
-
   const [rightWords, setRightWords] = useState(["a", "e", "i", "o", "u"]);
-  const [userWords, setUserWords] = useState([]);
-  const [contador, setContador] = useState(0);
+  const [userWords, setUserWords] = useState();
   const [disabled, setDisabled] = useState(false);
+  const [answerTime, setAnswerTime] = useState(10);
 
   setTimeout(() => {
     setLoop(false);
-  }, 5000);
+  }, 6000);
 
+  //Este hook de efecto se hace cada vez que el usuario presiona una letra que esta en el resultado
   useEffect(() => {
     //Aqui se cual letra esta cambiando
-    const res = rightWords.filter((letra) => letra != userWords[0]);
-
+    const res = rightWords.filter((letra) => letra != userWords);
+    setRightWords(res);
     //Si el contador llega a si que son las letras buenas, los botones se desabilitan
-    setContador(contador + 1);
-    if (contador === 5) {
+    if (rightWords.length === 1) {
       setDisabled(true);
     }
-
-    console.log(contador);
   }, [userWords]);
 
   const goLevel2 = () => {
@@ -52,6 +49,9 @@ export function Nivel1(props) {
     <View style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>1. Vocales</Text>
+        <Text style={{ color: "red", fontSize: 20, marginTop: 5 }}>
+          Time: {answerTime}
+        </Text>
         <Text style={styles.nivel}>{nivel} of 5</Text>
       </View>
       <View
@@ -68,15 +68,14 @@ export function Nivel1(props) {
           </Text>
         ) : (
           <Carousel
-            width={300}
-            height={300}
+            width={150}
+            height={150}
             autoPlay={true}
             data={vocales}
             loop={loop}
-            style={styles}
-            scrollAnimationDuration={300}
+            scrollAnimationDuration={100}
             renderItem={({ item }) => (
-              <Image source={item} style={{ width: 150, height: 250 }} />
+              <Image source={item} style={{ width: 150, height: 150 }} />
             )}
           />
         )}
@@ -103,7 +102,7 @@ export function Nivel1(props) {
             disabled={disabled}
             title="i"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords([...rightWords[2]])}
+            onPress={() => setUserWords("i")}
           />
           <Button
             containerStyle={{
@@ -115,7 +114,7 @@ export function Nivel1(props) {
             disabled={disabled}
             title="o"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords([...rightWords[3]])}
+            onPress={() => setUserWords("o")}
           />
 
           <Button
@@ -139,7 +138,7 @@ export function Nivel1(props) {
             disabled={disabled}
             title="u"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords([...rightWords[4]])}
+            onPress={() => setUserWords("u")}
           />
 
           <Button
@@ -152,7 +151,7 @@ export function Nivel1(props) {
             disabled={disabled}
             title="a"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords([...rightWords[0]])}
+            onPress={() => setUserWords("a")}
           />
 
           <Button
@@ -198,7 +197,7 @@ export function Nivel1(props) {
             disabled={disabled}
             title="e"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords([...rightWords[1]])}
+            onPress={() => setUserWords("e")}
           />
         </View>
       )}
