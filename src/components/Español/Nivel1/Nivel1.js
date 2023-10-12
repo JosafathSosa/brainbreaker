@@ -28,7 +28,17 @@ export function Nivel1(props) {
 
   setTimeout(() => {
     setLoop(false);
-  }, 6000);
+    if (loop) {
+      var i = answerTime;
+      var inter = setInterval(() => {
+        i = i - 1;
+        setAnswerTime(i);
+        if (i == 0) {
+          clearInterval(inter);
+        }
+      }, 1000);
+    }
+  }, 5000);
 
   //Este hook de efecto se hace cada vez que el usuario presiona una letra que esta en el resultado
   useEffect(() => {
@@ -42,18 +52,16 @@ export function Nivel1(props) {
   }, [userWords]);
 
   const goLevel2 = () => {
-    navigate.navigate(screen.juego.nivel2);
+    navigate.navigate(screen.juego.nivel2, { params: { nivel: nivel + 1 } });
   };
 
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>1. Vocales</Text>
-        <Text style={{ color: "red", fontSize: 20, marginTop: 5 }}>
-          Time: {answerTime}
-        </Text>
-        <Text style={styles.nivel}>{nivel} of 5</Text>
+        <Text style={styles.nivel}>{nivel} de 5</Text>
       </View>
+
       <View
         style={{
           justifyContent: "center",
@@ -62,6 +70,10 @@ export function Nivel1(props) {
           height: 300,
         }}
       >
+        {(answerTime > 0 && (
+          <Text style={styles.timeout}>Tiempo: {answerTime}</Text>
+        )) || <Text style={styles.timeout}>Se acabo el tiempo</Text>}
+
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
             ¡Bien hecho! <Text onPress={() => goLevel2()}>Siguiente nivel</Text>
@@ -70,9 +82,9 @@ export function Nivel1(props) {
           <Carousel
             width={150}
             height={150}
+            loop={loop}
             autoPlay={true}
             data={vocales}
-            loop={loop}
             scrollAnimationDuration={100}
             renderItem={({ item }) => (
               <Image source={item} style={{ width: 150, height: 150 }} />

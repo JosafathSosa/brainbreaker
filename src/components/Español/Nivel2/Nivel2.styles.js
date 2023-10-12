@@ -1,17 +1,17 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  title: {
-    color: "white",
-    fontSize: 25,
-  },
-
   titleContainer: {
     marginTop: 20,
     marginLeft: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+
+  title: {
+    color: "white",
+    fontSize: 25,
   },
 
   nivel: {
@@ -22,12 +22,5 @@ export const styles = StyleSheet.create({
     height: 30,
     textAlign: "center",
     paddingTop: 5,
-  },
-
-  timeout: {
-    color: "red",
-    fontSize: 20,
-    marginBottom: 30,
-    fontWeight: "bold",
   },
 });

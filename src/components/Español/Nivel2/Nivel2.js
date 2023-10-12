@@ -1,10 +1,33 @@
+import React, { useState } from "react";
 import { View, Text } from "react-native";
-import React from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export function Nivel2() {
+import { styles } from "./Nivel2.styles";
+
+export function Nivel2(props) {
+  const insets = useSafeAreaInsets();
+  const { route } = props;
+
+  const [nivel, setNivel] = useState(route.params.params.nivel);
+
   return (
-    <View>
-      <Text>Nivel2</Text>
+    <View
+      style={{
+        flex: 1,
+
+        backgroundColor: "#1f160f",
+
+        // Paddings to handle safe area
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+      }}
+    >
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>2. Tildes</Text>
+        <Text style={styles.nivel}>{nivel} de 5</Text>
+      </View>
     </View>
   );
 }

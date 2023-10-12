@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 export function Español() {
   const insets = useSafeAreaInsets();
 
-  const [cont, setCont] = useState(10);
+  const [cont, setCont] = useState(5);
   const [nivel1, setNivel1] = useState(false);
 
   useEffect(() => {
