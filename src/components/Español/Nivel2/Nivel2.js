@@ -9,6 +9,7 @@ export function Nivel2(props) {
   const { route } = props;
 
   const [nivel, setNivel] = useState(route.params.params.nivel);
+  console.log(route.params.params.puntosVocales - 1);
 
   return (
     <View

@@ -50,7 +50,8 @@ export function Nivel1(props) {
     //Aqui se cual letra esta cambiando
     const res = rightWords.filter((letra) => letra != userWords);
     setRightWords(res);
-
+    var i = points;
+    setPoints(i + 1);
     //Si el contador llega a si que son las letras buenas, los botones se desabilitan
     if (rightWords.length === 1) {
       setDisabled(true);
@@ -58,7 +59,9 @@ export function Nivel1(props) {
   }, [userWords]);
 
   const goLevel2 = () => {
-    navigate.navigate(screen.juego.nivel2, { params: { nivel: nivel + 1 } });
+    navigate.navigate(screen.juego.nivel2, {
+      params: { nivel: nivel + 1, puntosVocales: points },
+    });
   };
 
   return (
@@ -82,7 +85,10 @@ export function Nivel1(props) {
 
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
-            ¡Bien hecho! <Text onPress={() => goLevel2()}>Siguiente nivel</Text>
+            ¡Bien hecho!{" "}
+            <Text style={{ color: "#926247" }} onPress={() => goLevel2()}>
+              Siguiente nivel
+            </Text>
           </Text>
         ) : (
           <Carousel
