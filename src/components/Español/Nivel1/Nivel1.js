@@ -25,18 +25,23 @@ export function Nivel1(props) {
   const [userWords, setUserWords] = useState();
   const [disabled, setDisabled] = useState(false);
   const [answerTime, setAnswerTime] = useState(10);
+  const [points, setPoints] = useState(0);
+  const [inter, setInter] = useState(null);
 
   setTimeout(() => {
     setLoop(false);
     if (loop) {
       var i = answerTime;
-      var inter = setInterval(() => {
-        i = i - 1;
-        setAnswerTime(i);
-        if (i == 0) {
-          clearInterval(inter);
-        }
-      }, 1000);
+      setInter(
+        setInterval(() => {
+          i = i - 1;
+          setAnswerTime(i);
+          if (i == 0) {
+            clearInterval(inter);
+            setDisabled(true);
+          }
+        }, 1000)
+      );
     }
   }, 5000);
 
@@ -45,6 +50,7 @@ export function Nivel1(props) {
     //Aqui se cual letra esta cambiando
     const res = rightWords.filter((letra) => letra != userWords);
     setRightWords(res);
+
     //Si el contador llega a si que son las letras buenas, los botones se desabilitan
     if (rightWords.length === 1) {
       setDisabled(true);
