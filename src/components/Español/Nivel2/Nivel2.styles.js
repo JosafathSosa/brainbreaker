@@ -23,4 +23,17 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 5,
   },
+
+  words: {
+    color: "white",
+    fontSize: 50,
+    textAlign: "center",
+  },
+
+  timeout: {
+    color: "red",
+    fontSize: 20,
+    marginBottom: 30,
+    fontWeight: "bold",
+  },
 });

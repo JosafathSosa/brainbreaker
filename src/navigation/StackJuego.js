@@ -8,6 +8,7 @@ import { Menu } from "../screens/Juego/Menu/Menu";
 import { AccountScreen } from "../screens/Cuenta/AccountScreen/AccountScreen";
 import { Español } from "../screens/Juego/Español/Español.js";
 import { Nivel2 } from "../components/Español/Nivel2/Nivel2";
+import { Nivel3 } from "../components/Español/Nivel3/Nivel3";
 //
 
 import { screen } from "../utils/screenName";
@@ -43,6 +44,11 @@ export function StackJuego() {
       <Stack.Screen
         name={screen.juego.nivel2}
         component={Nivel2}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={screen.juego.nivel3}
+        component={Nivel3}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

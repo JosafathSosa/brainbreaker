@@ -28,6 +28,7 @@ export function Nivel1(props) {
   const [points, setPoints] = useState(0);
   const [inter, setInter] = useState(null);
 
+  //Cuando acaba el timeout para el carrusel empieza a contar en reversa de 10 a 0 y si acaba el nivel termina y no hay puntos
   setTimeout(() => {
     setLoop(false);
     if (loop) {
@@ -43,7 +44,7 @@ export function Nivel1(props) {
         }, 1000)
       );
     }
-  }, 5000);
+  }, 6000);
 
   //Este hook de efecto se hace cada vez que el usuario presiona una letra que esta en el resultado
   useEffect(() => {
@@ -79,7 +80,7 @@ export function Nivel1(props) {
           height: 300,
         }}
       >
-        {(answerTime > 0 && (
+        {(disabled != true && (
           <Text style={styles.timeout}>Tiempo: {answerTime}</Text>
         )) || <Text style={styles.timeout}>Se acabo el tiempo</Text>}
 
@@ -97,7 +98,6 @@ export function Nivel1(props) {
             loop={loop}
             autoPlay={true}
             data={vocales}
-            scrollAnimationDuration={100}
             renderItem={({ item }) => (
               <Image source={item} style={{ width: 150, height: 150 }} />
             )}

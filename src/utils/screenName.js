@@ -14,6 +14,7 @@ const juego = {
   juego: "Brain Breaker",
   español: "Español",
   nivel2: "Nivel2",
+  nivel3: "Nivel3",
 };
 
 export const screen = {
