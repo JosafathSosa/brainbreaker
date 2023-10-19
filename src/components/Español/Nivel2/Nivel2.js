@@ -59,7 +59,9 @@ export function Nivel2(props) {
   }, [userWords]);
 
   const goToLevel3 = () => {
-    navigation.navigate(screen.juego.nivel3);
+    navigation.navigate(screen.juego.nivel3, {
+      params: { nivel: nivel + 1, puntosVocales: points },
+    });
   };
 
   return (

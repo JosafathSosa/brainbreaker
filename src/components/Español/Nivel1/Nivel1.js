@@ -97,10 +97,8 @@ export function Nivel1(props) {
             height={150}
             loop={loop}
             autoPlay={true}
-            data={vocales}
-            renderItem={({ item }) => (
-              <Image source={item} style={{ width: 150, height: 150 }} />
-            )}
+            data={rightWords}
+            renderItem={({ item }) => <Text style={styles.words}>{item}</Text>}
           />
         )}
       </View>

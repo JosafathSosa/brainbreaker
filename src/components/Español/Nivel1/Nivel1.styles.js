@@ -30,4 +30,10 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: "bold",
   },
+
+  words: {
+    color: "white",
+    fontSize: 50,
+    textAlign: "center",
+  },
 });
