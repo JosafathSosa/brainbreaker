@@ -82,7 +82,12 @@ export function Nivel1(props) {
       >
         {(disabled != true && (
           <Text style={styles.timeout}>Tiempo: {answerTime}</Text>
-        )) || <Text style={styles.timeout}>Se acabo el tiempo</Text>}
+        )) || (
+          <View>
+            <Text style={styles.timeout}>Se acabo el tiempo</Text>
+            <Text style={styles.timeout2}>Obtuviste: {points - 1} puntos</Text>
+          </View>
+        )}
 
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>

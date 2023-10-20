@@ -12,7 +12,6 @@ export function Nivel2(props) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const { route } = props;
-
   const [rightWords, setrightWords] = useState([
     "Camión",
     "Árbol",
@@ -25,7 +24,10 @@ export function Nivel2(props) {
   const [disabled, setDisabled] = useState(false);
   const [answerTime, setAnswerTime] = useState(10);
   const [inter, setInter] = useState(null);
-  const [points, setPoints] = useState(route.params.params.puntosVocales - 1);
+  const [totalPoints, setTotalPoints] = useState(
+    route.params.params.puntosVocales - 1
+  );
+  const [points, setPoints] = useState(0);
 
   setTimeout(() => {
     setLoop(false);
@@ -60,7 +62,7 @@ export function Nivel2(props) {
 
   const goToLevel3 = () => {
     navigation.navigate(screen.juego.nivel3, {
-      params: { nivel: nivel + 1, puntosVocales: points },
+      params: { nivel: nivel + 1, puntos: points + totalPoints },
     });
   };
 
@@ -93,7 +95,12 @@ export function Nivel2(props) {
       >
         {(disabled != true && (
           <Text style={styles.timeout}>Tiempo: {answerTime}</Text>
-        )) || <Text style={styles.timeout}>Se acabo el tiempo</Text>}
+        )) || (
+          <View>
+            <Text style={styles.timeout}>Se acabo el tiempo</Text>
+            <Text style={styles.timeout2}>Obtuviste: {points - 1} puntos</Text>
+          </View>
+        )}
 
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>

@@ -29,6 +29,15 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 30,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  timeout2: {
+    color: "red",
+    fontSize: 15,
+    marginBottom: 30,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 
   words: {

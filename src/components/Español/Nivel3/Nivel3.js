@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
+import { Button } from "@rneui/base";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "../Nivel3/Nivel3.styles";
 import Carousel from "react-native-reanimated-carousel";
@@ -15,6 +16,13 @@ export function Nivel3(props) {
     "El gerente prometió aumento",
     "Corrí un maraton",
   ]);
+  const [userWords, setUserWords] = useState();
+  const [loop, setLoop] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+
+  setTimeout(() => {
+    setLoop(false);
+  }, 6000);
 
   return (
     <View
@@ -44,10 +52,130 @@ export function Nivel3(props) {
           width={300}
           height={150}
           autoPlay={true}
+          loop={loop}
           data={rightWords}
           renderItem={({ item }) => <Text style={styles.words}>{item}</Text>}
         />
       </View>
+      {loop ? (
+        ""
+      ) : (
+        <View
+          style={{
+            height: 500,
+            marginHorizontal: "auto",
+            flexDirection: "row",
+            flexWrap: "wrap",
+          }}
+        >
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="El gato"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("El gato")}
+          />
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Azucar
+          </Button>
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Camión"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Camión")}
+          />
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Avion
+          </Button>
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Árbol"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Árbol")}
+          />
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Camion
+          </Button>
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Limón"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Limón")}
+          />
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Arbol
+          </Button>
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Azúcar"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Azúcar")}
+          />
+        </View>
+      )}
     </View>
   );
 }
