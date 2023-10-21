@@ -12,9 +12,16 @@ export function Nivel3(props) {
   const [rightWords, setrightWords] = useState([
     "El gato esta comiendo",
     "El lunes veré a mi primo",
-    "El negocio es de la esposa Juan",
+    "El negocio es de la esposa de Juan",
     "El gerente prometió aumento",
     "Corrí un maraton",
+  ]);
+  const [words, setWords] = useState([
+    "El gato",
+    "Mi primo",
+    "Esposa de Juan",
+    "El gerente",
+    "Corrí",
   ]);
   const [userWords, setUserWords] = useState();
   const [loop, setLoop] = useState(true);
@@ -23,6 +30,8 @@ export function Nivel3(props) {
   setTimeout(() => {
     setLoop(false);
   }, 6000);
+
+  useEffect(() => {}, [userWords]);
 
   return (
     <View
@@ -90,7 +99,7 @@ export function Nivel3(props) {
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
           >
-            Azucar
+            El lunes
           </Button>
           <Button
             containerStyle={{
@@ -100,9 +109,9 @@ export function Nivel3(props) {
               margin: 10,
             }}
             disabled={disabled}
-            title="Camión"
+            title="Mi primo"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Camión")}
+            onPress={() => setUserWords("Mi primo")}
           />
 
           <Button
@@ -114,7 +123,7 @@ export function Nivel3(props) {
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
           >
-            Avion
+            El negocio
           </Button>
           <Button
             containerStyle={{
@@ -124,9 +133,9 @@ export function Nivel3(props) {
               margin: 10,
             }}
             disabled={disabled}
-            title="Árbol"
+            title="Esposa de Juan"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Árbol")}
+            onPress={() => setUserWords("Esposa de Juan")}
           />
           <Button
             containerStyle={{
@@ -137,7 +146,7 @@ export function Nivel3(props) {
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
           >
-            Camion
+            Comiendo
           </Button>
           <Button
             containerStyle={{
@@ -147,9 +156,9 @@ export function Nivel3(props) {
               margin: 10,
             }}
             disabled={disabled}
-            title="Limón"
+            title="El gerente"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Limón")}
+            onPress={() => setUserWords("El gerente")}
           />
           <Button
             containerStyle={{
@@ -160,7 +169,7 @@ export function Nivel3(props) {
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
           >
-            Arbol
+            Maraton
           </Button>
           <Button
             containerStyle={{
@@ -170,9 +179,9 @@ export function Nivel3(props) {
               margin: 10,
             }}
             disabled={disabled}
-            title="Azúcar"
+            title="Corrí"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Azúcar")}
+            onPress={() => setUserWords("Corrí")}
           />
         </View>
       )}
