@@ -36,4 +36,12 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: "bold",
   },
+
+  timeout2: {
+    color: "red",
+    fontSize: 15,
+    marginBottom: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 });

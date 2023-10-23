@@ -54,7 +54,7 @@ export function Nivel2(props) {
 
     var i = points;
     setPoints(i + 1);
-    console.log(points);
+
     if (rightWords.length === 1) {
       setDisabled(true);
     }
@@ -89,7 +89,6 @@ export function Nivel2(props) {
         style={{
           justifyContent: "center",
           alignItems: "center",
-
           height: 300,
         }}
       >

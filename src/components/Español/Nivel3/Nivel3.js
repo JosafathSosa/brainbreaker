@@ -26,12 +26,40 @@ export function Nivel3(props) {
   const [userWords, setUserWords] = useState();
   const [loop, setLoop] = useState(true);
   const [disabled, setDisabled] = useState(false);
+  const [inter, setInter] = useState(null);
+  const [answerTime, setAnswerTime] = useState(10);
+  const [totalPoints, setTotalPoints] = useState(null);
+  const [points, setPoints] = useState(0);
 
   setTimeout(() => {
     setLoop(false);
+    if (loop) {
+      var i = answerTime;
+      setInter(
+        setInterval(() => {
+          i = i - 1;
+          setAnswerTime(i);
+          if (i == 0) {
+            clearInterval(inter);
+            setDisabled(true);
+          }
+        }, 1000)
+      );
+    }
   }, 6000);
 
-  useEffect(() => {}, [userWords]);
+  useEffect(() => {
+    const res = words.filter((word) => word != userWords);
+
+    var i = points;
+    setPoints(i + 1);
+
+    if (words.length === 1) {
+      setDisabled(true);
+    }
+
+    setWords(res);
+  }, [userWords]);
 
   return (
     <View
@@ -53,18 +81,32 @@ export function Nivel3(props) {
         style={{
           justifyContent: "center",
           alignItems: "center",
-
           height: 300,
         }}
       >
-        <Carousel
-          width={300}
-          height={150}
-          autoPlay={true}
-          loop={loop}
-          data={rightWords}
-          renderItem={({ item }) => <Text style={styles.words}>{item}</Text>}
-        />
+        {(disabled != true && (
+          <Text style={styles.timeout}>Tiempo: {answerTime}</Text>
+        )) || (
+          <View>
+            <Text style={styles.timeout}>Se acabo el tiempo</Text>
+            <Text style={styles.timeout2}>Obtuviste {points - 1}</Text>
+          </View>
+        )}
+
+        {disabled ? (
+          <Text style={{ color: "white", fontSize: 20 }}>
+            Bien hecho <Text style={{ color: "#926247" }}>Siguiente nivel</Text>
+          </Text>
+        ) : (
+          <Carousel
+            width={300}
+            height={150}
+            autoPlay={true}
+            loop={loop}
+            data={rightWords}
+            renderItem={({ item }) => <Text style={styles.words}>{item}</Text>}
+          />
+        )}
       </View>
       {loop ? (
         ""
