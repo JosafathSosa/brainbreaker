@@ -15,6 +15,7 @@ const juego = {
   español: "Español",
   nivel2: "Nivel2",
   nivel3: "Nivel3",
+  nivel4: "Nivel4",
 };
 
 export const screen = {
