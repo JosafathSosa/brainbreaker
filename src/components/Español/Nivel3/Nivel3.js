@@ -28,7 +28,9 @@ export function Nivel3(props) {
   const [disabled, setDisabled] = useState(false);
   const [inter, setInter] = useState(null);
   const [answerTime, setAnswerTime] = useState(10);
-  const [totalPoints, setTotalPoints] = useState(null);
+  const [totalPoints, setTotalPoints] = useState(
+    route.params.params.puntos - 1
+  );
   const [points, setPoints] = useState(0);
 
   setTimeout(() => {
@@ -49,6 +51,7 @@ export function Nivel3(props) {
   }, 6000);
 
   useEffect(() => {
+    console.log(totalPoints);
     const res = words.filter((word) => word != userWords);
 
     var i = points;

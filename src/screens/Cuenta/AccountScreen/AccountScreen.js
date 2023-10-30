@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Icon, Button, Avatar } from "@rneui/base";
+import { LoadingModal } from "../../../components/Shared/LoadingModal";
 
 //FIREBASE
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -12,9 +13,10 @@ import { styles } from "./AccountScreen.styles";
 
 export function AccountScreen() {
   const { uid, photoURL, displayName, email } = getAuth().currentUser;
-
   const [avatar, setAvatar] = useState(photoURL);
   const [image, setImage] = useState(photoURL);
+  const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
 
   const changeAvatar = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -31,6 +33,8 @@ export function AccountScreen() {
   };
 
   const uploadImage = async (uri) => {
+    setLoading(true);
+    setLoadingText("Cambiando foto de perfil");
     const response = await fetch(uri);
     const blob = await response.blob();
 
@@ -52,6 +56,7 @@ export function AccountScreen() {
     const auth = getAuth();
     updateProfile(auth.currentUser, { photoURL: imageUrl });
     setAvatar(imageUrl);
+    setLoading(false);
   };
 
   const logOut = async () => {
@@ -82,6 +87,7 @@ export function AccountScreen() {
       >
         Cerrar Sesión
       </Button>
+      <LoadingModal show={loading} text={loadingText} />
     </View>
   );
 }

@@ -49,6 +49,7 @@ export function Nivel2(props) {
   const [nivel, setNivel] = useState(route.params.params.nivel);
 
   useEffect(() => {
+    console.log(totalPoints);
     const res = rightWords.filter((letra) => letra != userWords);
     setrightWords(res);
 
