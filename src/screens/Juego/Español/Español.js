@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatListComponent } from "react-native";
+import { View, Text } from "react-native";
 import { Nivel1 } from "../../../components/Español/Nivel1/Nivel1";
 
 import { useSafeAreaInsets } from "react-native-safe-area-context";

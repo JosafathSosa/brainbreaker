@@ -7,8 +7,18 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
+  text: {
+    textAlign: "center",
+    marginBottom: 20,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   btnChangeName: {
     backgroundColor: "#332419",
     height: 50,
+  },
+  inputContainer: { width: "80%" },
+  btn: {
+    backgroundColor: "#926247",
   },
 });

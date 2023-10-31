@@ -92,7 +92,7 @@ export function Nivel3(props) {
         )) || (
           <View>
             <Text style={styles.timeout}>Se acabo el tiempo</Text>
-            <Text style={styles.timeout2}>Obtuviste {points - 1}</Text>
+            <Text style={styles.timeout2}>Obtuviste: {points - 1} puntos</Text>
           </View>
         )}
 

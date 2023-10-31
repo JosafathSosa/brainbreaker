@@ -3,7 +3,6 @@ import { View, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Icon, Button, Avatar } from "@rneui/base";
 import { LoadingModal } from "../../../components/Shared/LoadingModal";
-
 //FIREBASE
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
