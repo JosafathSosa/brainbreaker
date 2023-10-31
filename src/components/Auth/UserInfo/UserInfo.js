@@ -14,14 +14,17 @@ import { styles } from "./UserInfo.styles";
 import { initialValues, validationSchema } from "./UserInfo.data";
 import { screen } from "../../../utils/screenName";
 
+import { LoadingModal } from "../../../components/Shared/LoadingModal";
+
 export function UserInfo() {
   const navigation = useNavigation();
 
   const [saludo, setSaludo] = useState("Bienvenido a Brain Breaker");
   const { uid, photoURL, displayName, email } = getAuth().currentUser;
-
   const [avatar, setAvatar] = useState(null);
   const [image, setImage] = useState(photoURL);
+  const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
 
   const changeAvatar = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -38,6 +41,8 @@ export function UserInfo() {
   };
 
   const uploadImage = async (uri) => {
+    setLoading(true);
+    setLoadingText("Cambiando imagen");
     const response = await fetch(uri);
     const blob = await response.blob();
 
@@ -59,6 +64,7 @@ export function UserInfo() {
     const auth = getAuth();
     updateProfile(auth.currentUser, { photoURL: imageUrl });
     setAvatar(imageUrl);
+    setLoading(false);
   };
 
   const formik = useFormik({
@@ -72,7 +78,7 @@ export function UserInfo() {
         const currentUser = getAuth().currentUser;
 
         await updateProfile(currentUser, { displayName });
-        navigation.navigate(screen.cuenta.login);
+        navigation.navigate(screen.cuenta.login, { nombre: displayName });
       } catch (error) {
         Toast.show({
           type: "error",
@@ -132,6 +138,7 @@ export function UserInfo() {
           loading={formik.isSubmitting}
         />
       </View>
+      <LoadingModal show={loading} text={loadingText} />
     </KeyboardAwareScrollView>
   );
 }
