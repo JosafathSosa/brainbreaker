@@ -51,6 +51,7 @@ export function Nivel1(props) {
     //Aqui se cual letra esta cambiando
     const res = rightWords.filter((letra) => letra != userWords);
     setRightWords(res);
+    console.log(res);
     var i = points;
     setPoints(i + 1);
     //Si el contador llega a si que son las letras buenas, los botones se desabilitan
