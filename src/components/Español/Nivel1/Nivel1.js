@@ -3,14 +3,21 @@ import { View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Image, Button } from "@rneui/base";
 import { styles } from "./Nivel1.styles";
-
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
 import { screen } from "../../../utils/screenName";
-
+import { initialValues, validationSchema } from "./Nivel1.data";
 import Carousel from "react-native-reanimated-carousel";
+import { Formik, useFormik } from "formik";
+import Toast from "react-native-toast-message";
+import { db } from "../../../utils/firebase";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export function Nivel1(props) {
   const navigate = useNavigation();
   const { nivel } = props;
+  const { uid } = getAuth().currentUser;
 
   const [vocales, setVocales] = useState([
     require("../../../../assets/vocales/vocalA.png"),
@@ -51,20 +58,39 @@ export function Nivel1(props) {
     //Aqui se cual letra esta cambiando
     const res = rightWords.filter((letra) => letra != userWords);
     setRightWords(res);
-    console.log(res);
     var i = points;
     setPoints(i + 1);
+    formik.setFieldValue("Nivel1", points);
     //Si el contador llega a si que son las letras buenas, los botones se desabilitan
     if (rightWords.length === 1) {
       setDisabled(true);
     }
   }, [userWords]);
 
-  const goLevel2 = () => {
-    navigate.navigate(screen.juego.nivel2, {
-      params: { nivel: nivel + 1, puntosVocales: points },
-    });
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    validationSchema: false,
+    onSubmit: async (formValue) => {
+      try {
+        const newData = formValue;
+        newData.uid = uid;
+
+        const myDB = doc(db, "PuntosEspañol", newData.uid);
+        await setDoc(myDB, newData);
+        navigate.navigate(screen.juego.nivel2, {
+          params: { nivel: nivel + 1, puntosVocales: points },
+        });
+      } catch (error) {
+        console.log(error);
+        Toast.show({
+          type: "error",
+          position: "top",
+          text1: "No se pudieron enviar los datos",
+        });
+      }
+    },
+  });
 
   return (
     <View style={{ flex: 1 }}>
@@ -93,7 +119,7 @@ export function Nivel1(props) {
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
             ¡Bien hecho!{" "}
-            <Text style={{ color: "#926247" }} onPress={() => goLevel2()}>
+            <Text style={{ color: "#926247" }} onPress={formik.handleSubmit}>
               Siguiente nivel
             </Text>
           </Text>

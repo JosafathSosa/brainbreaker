@@ -4,13 +4,21 @@ import { Button } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Carousel from "react-native-reanimated-carousel";
-
+import "react-native-get-random-values";
+import { v4 as uuidv4 } from "uuid";
+import { initialValues, validationSchema } from "./Nivel2.data";
 import { screen } from "../../../utils/screenName";
 import { styles } from "./Nivel2.styles";
+import { Formik, useFormik } from "formik";
+import Toast from "react-native-toast-message";
+import { db } from "../../../utils/firebase";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export function Nivel2(props) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
+  const { uid } = getAuth().currentUser;
   const { route } = props;
   const [rightWords, setrightWords] = useState([
     "Camión",
@@ -55,17 +63,38 @@ export function Nivel2(props) {
 
     var i = points;
     setPoints(i + 1);
-
+    formik.setFieldValue("Nivel2", points);
     if (rightWords.length === 1) {
       setDisabled(true);
     }
   }, [userWords]);
 
-  const goToLevel3 = () => {
-    navigation.navigate(screen.juego.nivel3, {
-      params: { nivel: nivel + 1, puntos: points + totalPoints },
-    });
-  };
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    validateOnChange: false,
+    onSubmit: async (formValue) => {
+      try {
+        console.log(formValue);
+
+        const myDB = doc(db, "PuntosEspañol", uid);
+
+        await updateDoc(myDB, formValue);
+
+        navigation.navigate(screen.juego.nivel3, {
+          params: { nivel: nivel + 1, puntos: points + totalPoints },
+        });
+      } catch (error) {
+        Toast.show({
+          type: "error",
+          position: "top ",
+          text1: "No se pudieron enviar los datos",
+        });
+      }
+    },
+  });
+
+  const goToLevel3 = () => {};
 
   return (
     <View
@@ -105,7 +134,7 @@ export function Nivel2(props) {
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
             ¡Bien hecho!{" "}
-            <Text style={{ color: "#926247" }} onPress={() => goToLevel3()}>
+            <Text style={{ color: "#926247" }} onPress={formik.handleSubmit}>
               Siguiente nivel
             </Text>
           </Text>
