@@ -9,7 +9,8 @@ import { AccountScreen } from "../screens/Cuenta/AccountScreen/AccountScreen";
 import { Español } from "../screens/Juego/Español/Español.js";
 import { Nivel2 } from "../components/Español/Nivel2/Nivel2";
 import { Nivel3 } from "../components/Español/Nivel3/Nivel3";
-import {Nivel4} from "../components/Español/Nivel4/Nivel4.js"
+import { Nivel4 } from "../components/Español/Nivel4/Nivel4.js";
+import { Nivel5 } from "../components/Español/Nivel5/Nivel5.js";
 //
 
 import { screen } from "../utils/screenName";
@@ -52,7 +53,16 @@ export function StackJuego() {
         component={Nivel3}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name={screen.juego.nivel4} component={Nivel4} options={{headerShown: false}}/>
+      <Stack.Screen
+        name={screen.juego.nivel4}
+        component={Nivel4}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={screen.juego.nivel5}
+        component={Nivel5}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

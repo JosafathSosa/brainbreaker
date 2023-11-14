@@ -4,11 +4,11 @@ import { Button } from "@rneui/base";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "../Nivel3/Nivel3.styles";
 import Carousel from "react-native-reanimated-carousel";
-import {useNavigation} from "@react-navigation/native"
-import {screen} from "../../../utils/screenName"
+import { useNavigation } from "@react-navigation/native";
+import { screen } from "../../../utils/screenName";
 
 export function Nivel3(props) {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   const { route } = props;
   const insets = useSafeAreaInsets();
   const [nivel, setNivel] = useState(route.params.params.nivel);
@@ -54,7 +54,9 @@ export function Nivel3(props) {
   }, 6000);
 
   goToLevel4 = () => {
-    navigation.navigate(screen.juego.nivel4)
+    navigation.navigate(screen.juego.nivel4, {
+      params: { nivel: nivel, totalPoints: points + totalPoints },
+    });
   };
 
   useEffect(() => {

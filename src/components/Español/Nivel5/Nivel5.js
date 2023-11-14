@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import { Button } from "@rneui/base";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { styles } from "../Nivel4/Nivel4.styles";
+import { styles } from "../Nivel5/Nivel5.styles";
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils/screenName";
 
-export function Nivel4(props) {
+export function Nivel5(props) {
   const navigation = useNavigation();
   const { route } = props;
   const insets = useSafeAreaInsets();
@@ -20,11 +20,11 @@ export function Nivel4(props) {
     "Encender",
   ]);
   const [words, setWords] = useState([
-    "Pequeño",
-    "Triste",
-    "Lento",
-    "Bajo",
-    "Apagar",
+    "Amplio",
+    "Alegre",
+    "Veloz",
+    "Elevado",
+    "Activar",
   ]);
   const [userWords, setUserWords] = useState();
   const [loop, setLoop] = useState(true);
@@ -53,10 +53,8 @@ export function Nivel4(props) {
     }
   }, 6000);
 
-  const goToLevel5 = () => {
-    navigation.navigate(screen.juego.nivel5, {
-      params: { puntos: points + totalPoints, nivel: nivel + 1 },
-    });
+  const recompensas = () => {
+    console.log("Hola");
   };
 
   useEffect(() => {
@@ -86,7 +84,7 @@ export function Nivel4(props) {
       }}
     >
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>4. Antónimos</Text>
+        <Text style={styles.title}>5. Sinónimos</Text>
         <Text style={styles.nivel}>{nivel} de 5</Text>
       </View>
 
@@ -109,7 +107,7 @@ export function Nivel4(props) {
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
             Bien hecho{" "}
-            <Text style={{ color: "#926247" }} onPress={() => goToLevel5()}>
+            <Text style={{ color: "#926247" }} onPress={() => recompensas()}>
               Siguiente nivel
             </Text>
           </Text>
@@ -142,11 +140,95 @@ export function Nivel4(props) {
               flexGrow: 10,
               margin: 10,
             }}
+            disabled={disabled}
+            title="Amplio"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Amplio")}
+          />
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Pesado
+          </Button>
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Satisfecho
+          </Button>
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Alegre"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Alegre")}
+          />
+
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Veloz"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Veloz")}
+          />
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            buttonStyle={{ backgroundColor: "#926247" }}
+          >
+            Agil
+          </Button>
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
+            disabled={disabled}
+            title="Elevado"
+            buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => setUserWords("Elevado")}
+          />
+          <Button
+            containerStyle={{
+              width: 100,
+              height: 150,
+              flexGrow: 10,
+              margin: 10,
+            }}
             buttonStyle={{ backgroundColor: "#926247" }}
           >
             Gigante
           </Button>
-
           <Button
             containerStyle={{
               width: 100,
@@ -155,97 +237,9 @@ export function Nivel4(props) {
               margin: 10,
             }}
             disabled={disabled}
-            title="Pequeño"
+            title="Activar"
             buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Pequeño")}
-          />
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            buttonStyle={{ backgroundColor: "#926247" }}
-          >
-            Divertido
-          </Button>
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            disabled={disabled}
-            title="Triste"
-            buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Triste")}
-          />
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            disabled={disabled}
-            title="Lento"
-            buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Lento")}
-          />
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            disabled={disabled}
-            title="Bajo"
-            buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Bajo")}
-          />
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            buttonStyle={{ backgroundColor: "#926247" }}
-          >
-            Brillar
-          </Button>
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            buttonStyle={{ backgroundColor: "#926247" }}
-          >
-            Importante
-          </Button>
-
-          <Button
-            containerStyle={{
-              width: 100,
-              height: 150,
-              flexGrow: 10,
-              margin: 10,
-            }}
-            disabled={disabled}
-            title="Apagar"
-            buttonStyle={{ backgroundColor: "#926247" }}
-            onPress={() => setUserWords("Apagar")}
+            onPress={() => setUserWords("Activar")}
           />
         </View>
       )}
