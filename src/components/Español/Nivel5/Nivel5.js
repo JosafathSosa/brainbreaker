@@ -114,7 +114,7 @@ export function Nivel5(props) {
     >
       <View style={styles.titleContainer}>
         <Text style={styles.title}>5. Sinónimos</Text>
-        <Text style={styles.nivel}>{nivel} de 5</Text>
+        <Text style={styles.nivel}>5 de 5</Text>
       </View>
 
       <View

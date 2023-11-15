@@ -113,7 +113,7 @@ export function Nivel4(props) {
     >
       <View style={styles.titleContainer}>
         <Text style={styles.title}>4. Antónimos</Text>
-        <Text style={styles.nivel}>{nivel} de 5</Text>
+        <Text style={styles.nivel}>4 de 5</Text>
       </View>
 
       <View
