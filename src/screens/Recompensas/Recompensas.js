@@ -55,59 +55,52 @@ export function Recompensas() {
       </View>
 
       <View style={styles.results}>
-        <View style={{ marginTop: 50, justifyContent: "center" }}>
-          <Text style={{ color: "white", marginLeft: 10, fontSize: 20 }}>
-            Vocales:
-          </Text>
-          <AirbnbRating
-            defaultRating={reviews ? reviews[0].Nivel1 : 3}
-            showRating={false}
-            size={35}
-            isDisabled
-            starContainerStyle={{ marginBottom: 20 }}
-          />
-          <Text style={{ color: "white", marginLeft: 10, fontSize: 20 }}>
-            Tildes:
-          </Text>
-          <AirbnbRating
-            defaultRating={reviews ? reviews[0].Nivel2 : 3}
-            showRating={false}
-            size={35}
-            isDisabled
-            starContainerStyle={{ marginBottom: 20 }}
-          />
-          <Text style={{ color: "white", marginLeft: 10, fontSize: 20 }}>
-            Sujeto:
-          </Text>
-          <AirbnbRating
-            defaultRating={reviews ? reviews[0].Nivel3 : 3}
-            showRating={false}
-            size={35}
-            isDisabled
-            starContainerStyle={{ marginBottom: 20 }}
-          />
-          <Text style={{ color: "white", marginLeft: 10, fontSize: 20 }}>
-            Antonimos:
-          </Text>
-          <AirbnbRating
-            defaultRating={reviews ? reviews[0].Nivel4 : 3}
-            showRating={false}
-            size={35}
-            isDisabled
-            starContainerStyle={{ marginBottom: 20 }}
-          />
-          <Text style={{ color: "white", marginLeft: 10, fontSize: 20 }}>
-            Sinonimos:
-          </Text>
-          <AirbnbRating
-            defaultRating={reviews ? reviews[0].Nivel5 : 3}
-            showRating={false}
-            size={35}
-            isDisabled
-            starContainerStyle={{ marginBottom: 20 }}
-          />
-        </View>
-        <Button title="Ok" onPress={() => goToMenu()} />
+        <Text style={styles.text}>Vocales:</Text>
+        <AirbnbRating
+          defaultRating={reviews ? reviews[0].Nivel1 : 3}
+          showRating={false}
+          size={35}
+          isDisabled
+          starContainerStyle={{ marginBottom: 20 }}
+        />
+        <Text style={styles.text}>Tildes:</Text>
+        <AirbnbRating
+          defaultRating={reviews ? reviews[0].Nivel2 : 3}
+          showRating={false}
+          size={35}
+          isDisabled
+          starContainerStyle={{ marginBottom: 20 }}
+        />
+        <Text style={styles.text}>Sujeto:</Text>
+        <AirbnbRating
+          defaultRating={reviews ? reviews[0].Nivel3 : 3}
+          showRating={false}
+          size={35}
+          isDisabled
+          starContainerStyle={{ marginBottom: 20 }}
+        />
+        <Text style={styles.text}>Antonimos:</Text>
+        <AirbnbRating
+          defaultRating={reviews ? reviews[0].Nivel4 : 3}
+          showRating={false}
+          size={35}
+          isDisabled
+          starContainerStyle={{ marginBottom: 20 }}
+        />
+        <Text style={styles.text}>Sinonimos:</Text>
+        <AirbnbRating
+          defaultRating={reviews ? reviews[0].Nivel5 : 3}
+          showRating={false}
+          size={35}
+          isDisabled
+          starContainerStyle={{ marginBottom: 20 }}
+        />
+        <Button
+          title="Ok"
+          onPress={() => goToMenu()}
+          containerStyle={styles.btnContainer}
+          buttonStyle={styles.btn}
+        />
       </View>
     </View>
   );
