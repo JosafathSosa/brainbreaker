@@ -90,7 +90,7 @@ export function Nivel5(props) {
         const myBD = doc(db, "PuntosEspañol", uid);
         await updateDoc(myBD, formValue);
 
-        console.log("Juego finalizado y puntos guardados");
+        goToRecompensas();
       } catch (error) {
         Toast.show({
           type: "error",
