@@ -6,10 +6,17 @@ import { styles } from "../Nivel5/Nivel5.styles";
 import Carousel from "react-native-reanimated-carousel";
 import { useNavigation } from "@react-navigation/native";
 import { screen } from "../../../utils/screenName";
+import { initialValues, validationSchema } from "./Nivel5.data";
+import { Formik, useFormik } from "formik";
+import Toast from "react-native-toast-message";
+import { db } from "../../../utils/firebase";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 export function Nivel5(props) {
   const navigation = useNavigation();
   const { route } = props;
+  const { uid } = getAuth().currentUser;
   const insets = useSafeAreaInsets();
   const [nivel, setNivel] = useState(route.params.params.nivel);
   const [rightWords, setrightWords] = useState([
@@ -53,8 +60,8 @@ export function Nivel5(props) {
     }
   }, 6000);
 
-  const recompensas = () => {
-    console.log("Hola");
+  const goToRecompensas = () => {
+    navigation.navigate(screen.juego.recompensas);
   };
 
   useEffect(() => {
@@ -64,13 +71,35 @@ export function Nivel5(props) {
     var i = points;
     setPoints(i + 1);
     setTotalPoints(points);
-
+    formik.setFieldValue("Nivel5", points);
     if (words.length === 1) {
       setDisabled(true);
     }
 
     setWords(res);
   }, [userWords]);
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    validateOnChange: false,
+    onSubmit: async (formValue) => {
+      try {
+        console.log(formValue);
+
+        const myBD = doc(db, "PuntosEspañol", uid);
+        await updateDoc(myBD, formValue);
+
+        console.log("Juego finalizado y puntos guardados");
+      } catch (error) {
+        Toast.show({
+          type: "error",
+          position: "top",
+          text1: "No se pudieron enviar los datos",
+        });
+      }
+    },
+  });
 
   return (
     <View
@@ -107,7 +136,7 @@ export function Nivel5(props) {
         {disabled ? (
           <Text style={{ color: "white", fontSize: 20 }}>
             Bien hecho{" "}
-            <Text style={{ color: "#926247" }} onPress={() => recompensas()}>
+            <Text style={{ color: "#926247" }} onPress={formik.handleSubmit}>
               Siguiente nivel
             </Text>
           </Text>

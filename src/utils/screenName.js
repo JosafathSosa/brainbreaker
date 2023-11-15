@@ -17,6 +17,7 @@ const juego = {
   nivel3: "Nivel3",
   nivel4: "Nivel4",
   nivel5: "Nivel5",
+  recompensas: "Recomensas",
 };
 
 export const screen = {

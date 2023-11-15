@@ -75,8 +75,6 @@ export function Nivel2(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        console.log(formValue);
-
         const myDB = doc(db, "PuntosEspañol", uid);
 
         await updateDoc(myDB, formValue);

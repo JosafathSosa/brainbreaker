@@ -11,6 +11,7 @@ import { Nivel2 } from "../components/Español/Nivel2/Nivel2";
 import { Nivel3 } from "../components/Español/Nivel3/Nivel3";
 import { Nivel4 } from "../components/Español/Nivel4/Nivel4.js";
 import { Nivel5 } from "../components/Español/Nivel5/Nivel5.js";
+import { Recompensas } from "../screens/Recompensas/Recompensas.js";
 //
 
 import { screen } from "../utils/screenName";
@@ -61,6 +62,11 @@ export function StackJuego() {
       <Stack.Screen
         name={screen.juego.nivel5}
         component={Nivel5}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={screen.juego.recompensas}
+        component={Recompensas}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
