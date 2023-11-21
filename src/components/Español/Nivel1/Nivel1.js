@@ -34,6 +34,7 @@ export function Nivel1(props) {
   const [answerTime, setAnswerTime] = useState(10);
   const [points, setPoints] = useState(0);
   const [inter, setInter] = useState(null);
+  const [intentos, setIntentos] = useState(3);
 
   //Cuando acaba el timeout para el carrusel empieza a contar en reversa de 10 a 0 y si acaba el nivel termina y no hay puntos
   setTimeout(() => {
@@ -92,6 +93,18 @@ export function Nivel1(props) {
     },
   });
 
+  const intentoFallido = () => {
+    const x = intentos;
+    setIntentos(x - 1);
+
+    if (intentos === 0) {
+      alert("¡Perdiste! Intentalo de nuevo");
+      navigate.navigate(screen.juego.juego);
+    } else {
+      alert(`Te quedan: ${intentos} intentos `);
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.titleContainer}>
@@ -127,7 +140,6 @@ export function Nivel1(props) {
           <Carousel
             width={150}
             height={150}
-            loop={loop}
             autoPlay={true}
             data={rightWords}
             renderItem={({ item }) => <Text style={styles.words}>{item}</Text>}
@@ -179,6 +191,7 @@ export function Nivel1(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             g
           </Button>
@@ -216,6 +229,7 @@ export function Nivel1(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             q
           </Button>
@@ -227,6 +241,7 @@ export function Nivel1(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             r
           </Button>
@@ -238,6 +253,7 @@ export function Nivel1(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             v
           </Button>

@@ -36,6 +36,7 @@ export function Nivel2(props) {
     route.params.params.puntosVocales - 1
   );
   const [points, setPoints] = useState(0);
+  const [intentos, setIntentos] = useState(3);
 
   setTimeout(() => {
     setLoop(false);
@@ -57,7 +58,6 @@ export function Nivel2(props) {
   const [nivel, setNivel] = useState(route.params.params.nivel);
 
   useEffect(() => {
-    console.log(totalPoints);
     const res = rightWords.filter((letra) => letra != userWords);
     setrightWords(res);
 
@@ -92,7 +92,17 @@ export function Nivel2(props) {
     },
   });
 
-  const goToLevel3 = () => {};
+  const intentoFallido = () => {
+    const x = intentos;
+    setIntentos(x - 1);
+
+    if (intentos === 0) {
+      alert("¡Perdiste! Intentalo de nuevo");
+      navigation.navigate(screen.juego.juego);
+    } else {
+      alert(`Te quedan: ${intentos} intentos `);
+    }
+  };
 
   return (
     <View
@@ -179,6 +189,7 @@ export function Nivel2(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Azucar
           </Button>
@@ -203,6 +214,7 @@ export function Nivel2(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Avion
           </Button>
@@ -226,6 +238,7 @@ export function Nivel2(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Camion
           </Button>
@@ -249,6 +262,7 @@ export function Nivel2(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Arbol
           </Button>
