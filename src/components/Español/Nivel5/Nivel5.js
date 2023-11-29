@@ -42,6 +42,7 @@ export function Nivel5(props) {
     route.params.params.puntos - 1
   );
   const [points, setPoints] = useState(0);
+  const [intentos, setIntentos] = useState(2);
 
   setTimeout(() => {
     setLoop(false);
@@ -101,6 +102,18 @@ export function Nivel5(props) {
     },
   });
 
+  const intentoFallido = () => {
+    const x = intentos;
+    setIntentos(x - 1);
+
+    if (intentos === 0) {
+      alert("¡Perdiste! Intentalo de nuevo");
+      navigation.navigate(screen.juego.juego);
+    } else {
+      alert(`Te quedan: ${intentos} intentos `);
+    }
+  };
+
   return (
     <View
       style={{
@@ -137,7 +150,7 @@ export function Nivel5(props) {
           <Text style={{ color: "white", fontSize: 20 }}>
             Bien hecho{" "}
             <Text style={{ color: "#926247" }} onPress={formik.handleSubmit}>
-              Siguiente nivel
+              Ver resultados
             </Text>
           </Text>
         ) : (
@@ -183,6 +196,7 @@ export function Nivel5(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Pesado
           </Button>
@@ -195,6 +209,7 @@ export function Nivel5(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Satisfecho
           </Button>
@@ -232,6 +247,7 @@ export function Nivel5(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Agil
           </Button>
@@ -255,6 +271,7 @@ export function Nivel5(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Gigante
           </Button>

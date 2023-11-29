@@ -36,7 +36,7 @@ export function Nivel2(props) {
     route.params.params.puntosVocales - 1
   );
   const [points, setPoints] = useState(0);
-  const [intentos, setIntentos] = useState(3);
+  const [intentos, setIntentos] = useState(2);
 
   setTimeout(() => {
     setLoop(false);

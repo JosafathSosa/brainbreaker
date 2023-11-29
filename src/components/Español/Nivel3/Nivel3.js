@@ -44,6 +44,7 @@ export function Nivel3(props) {
     route.params.params.puntos - 1
   );
   const [points, setPoints] = useState(0);
+  const [intentos, setIntentos] = useState(2);
 
   setTimeout(() => {
     setLoop(false);
@@ -96,6 +97,18 @@ export function Nivel3(props) {
       }
     },
   });
+
+  const intentoFallido = () => {
+    const x = intentos;
+    setIntentos(x - 1);
+
+    if (intentos === 0) {
+      alert("¡Perdiste! Intentalo de nuevo");
+      navigation.navigate(screen.juego.juego);
+    } else {
+      alert(`Te quedan: ${intentos} intentos `);
+    }
+  };
 
   return (
     <View
@@ -179,6 +192,7 @@ export function Nivel3(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             El lunes
           </Button>
@@ -203,6 +217,7 @@ export function Nivel3(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             El negocio
           </Button>
@@ -226,6 +241,7 @@ export function Nivel3(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Comiendo
           </Button>
@@ -249,6 +265,7 @@ export function Nivel3(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Maraton
           </Button>

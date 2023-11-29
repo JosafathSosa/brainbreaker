@@ -63,15 +63,15 @@ export function Menu() {
           Selecciona el tema:
         </Text>
         <Button
-          title="Geografia"
-          containerStyle={styles.btnContainer1}
-          buttonStyle={styles.btn}
-        />
-        <Button
           title="Español"
           containerStyle={styles.btnContainer1}
           buttonStyle={styles.btn}
           onPress={() => navigation.navigate(screen.juego.español)}
+        />
+        <Button
+          title="Geografia"
+          containerStyle={styles.btnContainer1}
+          buttonStyle={styles.btn}
         />
       </View>
     </View>

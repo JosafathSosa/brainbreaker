@@ -34,7 +34,7 @@ export function Nivel1(props) {
   const [answerTime, setAnswerTime] = useState(10);
   const [points, setPoints] = useState(0);
   const [inter, setInter] = useState(null);
-  const [intentos, setIntentos] = useState(3);
+  const [intentos, setIntentos] = useState(2);
 
   //Cuando acaba el timeout para el carrusel empieza a contar en reversa de 10 a 0 y si acaba el nivel termina y no hay puntos
   setTimeout(() => {

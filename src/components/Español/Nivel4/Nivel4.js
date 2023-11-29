@@ -42,6 +42,7 @@ export function Nivel4(props) {
     route.params.params.puntos - 1
   );
   const [points, setPoints] = useState(0);
+  const [intentos, setIntentos] = useState(2);
 
   setTimeout(() => {
     setLoop(false);
@@ -60,7 +61,17 @@ export function Nivel4(props) {
     }
   }, 6000);
 
-  const goToLevel5 = () => {};
+  const intentoFallido = () => {
+    const x = intentos;
+    setIntentos(x - 1);
+
+    if (intentos === 0) {
+      alert("¡Perdiste! Intentalo de nuevo");
+      navigation.navigate(screen.juego.juego);
+    } else {
+      alert(`Te quedan: ${intentos} intentos `);
+    }
+  };
 
   useEffect(() => {
     console.log(totalPoints);
@@ -169,6 +180,7 @@ export function Nivel4(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Gigante
           </Button>
@@ -194,6 +206,7 @@ export function Nivel4(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Divertido
           </Button>
@@ -245,6 +258,7 @@ export function Nivel4(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Brillar
           </Button>
@@ -257,6 +271,7 @@ export function Nivel4(props) {
               margin: 10,
             }}
             buttonStyle={{ backgroundColor: "#926247" }}
+            onPress={() => intentoFallido()}
           >
             Importante
           </Button>
